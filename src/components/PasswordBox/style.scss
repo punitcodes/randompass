@@ -1,0 +1,19 @@
+h2 {
+    margin: 5rem 0.5rem 0 0;
+    display: inline-block;
+    letter-spacing: 0.1em;
+}
+
+button {
+    margin: 2.5rem 0 0 20px;
+}
+
+@media screen and (max-width: 400px) {
+    .navbar {
+        display: inline;
+    }
+
+    #option-buttons{
+        display: inherit;
+    }
+  }
