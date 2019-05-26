@@ -75,6 +75,7 @@ class App extends React.Component {
       symbolsCheckBox: false,
       randomPass: randomize('aA', 12),
     })
+    checkBoxArray = ['A', 'a']
   }
 
   generateUltraSecurePass() {
@@ -200,7 +201,6 @@ class App extends React.Component {
                     {/* TODO: Change border color of input based on length value. Green if more than 16, Yellow if in between 12 and 16 and red if less than 12 */}
                     <input
                       type="text"
-                      name="passlengthinput"
                       id="passlengthinput"
                       placeholder="Password Length"
                       maxLength="2"
@@ -215,7 +215,6 @@ class App extends React.Component {
                   <div className="col">
                     <input
                       type="checkbox"
-                      name="uppercaseCheckBox"
                       id="uppercaseCheckBox"
                       pattern="A"
                       checked={this.state.uppercaseCheckBox}
@@ -226,7 +225,6 @@ class App extends React.Component {
                   <div className="col">
                     <input
                       type="checkbox"
-                      name="lowercaseCheckBox"
                       id="lowercaseCheckBox"
                       pattern="a"
                       checked={this.state.lowercaseCheckBox}
@@ -239,7 +237,6 @@ class App extends React.Component {
                   <div className="col">
                     <input
                       type="checkbox"
-                      name="numbersCheckBox"
                       id="numbersCheckBox"
                       pattern="0"
                       checked={this.state.numbersCheckBox}
@@ -250,7 +247,6 @@ class App extends React.Component {
                   <div className="col">
                     <input
                       type="checkbox"
-                      name="symbolsCheckBox"
                       id="symbolsCheckBox"
                       pattern="!"
                       checked={this.state.symbolsCheckBox}
