@@ -3,7 +3,7 @@ import React from 'react'
 import { siteMetadata } from '../../gatsby-config'
 import Layout from 'components/Layout'
 import Meta from 'components/Meta'
-import PasswordBox from 'components/PasswordBox'
+import App from 'components/App'
 
 class Index extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class Index extends React.Component {
       <div className="container">
         <Layout location={location}>
           <Meta site={siteMetadata} title="Random Password Generator" />
-          <PasswordBox />
+          <App />
         </Layout>
       </div>
     )
