@@ -122,24 +122,27 @@ class App extends React.Component {
 
   checkBoxChange(event) {
     let idFromEvent = event.target.id
-    this.setState(prevState => ({ [idFromEvent]: !prevState[idFromEvent] }))
+    // Comment: Atleast one checkbox should be checked
+    if (checkBoxArray.length !== 1 || !this.state[idFromEvent] === true) {
+      this.setState(prevState => ({ [idFromEvent]: !prevState[idFromEvent] }))
 
-    // Comment: Checks if checkbox is checked or not
-    if (event.target.checked === true) {
-      // Comment: Checks if pattern is already present in array. If not present then push, if present then skip
-      if (checkBoxArray.includes(event.target.pattern) === false)
-        checkBoxArray.push(event.target.pattern)
-    } else {
-      // Comment: On uncheck remove pattern from array
-      let index = checkBoxArray.indexOf(event.target.pattern)
-      if (index > -1) checkBoxArray.splice(index, 1)
+      // Comment: Checks if checkbox is checked or not
+      if (event.target.checked === true) {
+        // Comment: Checks if pattern is already present in array. If not present then push, if present then skip
+        if (checkBoxArray.includes(event.target.pattern) === false)
+          checkBoxArray.push(event.target.pattern)
+      } else {
+        // Comment: On uncheck remove pattern from array
+        let index = checkBoxArray.indexOf(event.target.pattern)
+        if (index > -1) checkBoxArray.splice(index, 1)
+      }
+      let patternFromCheckBox = checkBoxArray.join('')
+
+      this.setState({
+        passPattern: patternFromCheckBox,
+        randomPass: randomize(patternFromCheckBox, this.state.passLength),
+      })
     }
-    let patternFromCheckBox = checkBoxArray.join('')
-
-    this.setState({
-      passPattern: patternFromCheckBox,
-      randomPass: randomize(patternFromCheckBox, this.state.passLength),
-    })
   }
   render() {
     return (
