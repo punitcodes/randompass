@@ -8,28 +8,27 @@ import axios from 'axios'
 
 import './style.scss'
 
-let checkBoxArray = ['A', 'a'] // This is the default checkbox array
+let checkBoxArray = ['A', 'a'] // Comment: This is the default checkbox array
 
 class App extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      tooltiptext: 'Copy to clipboard',
       passPattern: 'aA',
       passLength: 12,
-      valueInPassInput: undefined,
+      valueInPassInput: undefined, // Comment: Intitally value in password leghth field should be undefined or ''
       uppercaseCheckBox: true,
       lowercaseCheckBox: true,
       numbersCheckBox: false,
       symbolsCheckBox: false,
     }
 
-    this.clipboardClick = this.clipboardClick.bind(this)
+    this.handleClipboardClick = this.handleClipboardClick.bind(this)
     this.generateSecurePass = this.generateSecurePass.bind(this)
     this.generateUltraSecurePass = this.generateUltraSecurePass.bind(this)
-    this.sharePassClick = this.sharePassClick.bind(this)
-    this.passLengthChange = this.passLengthChange.bind(this)
+    this.handleSharePasswordClick = this.handleSharePasswordClick.bind(this)
+    this.handlePasswordLengthChange = this.handlePasswordLengthChange.bind(this)
     this.checkBoxChange = this.checkBoxChange.bind(this)
   }
 
@@ -54,12 +53,12 @@ class App extends React.Component {
     */
     }
     tippy('#clipboard-icon', {
-      content: this.state.tooltiptext,
+      content: 'Copy to clipboard',
       placement: 'right',
     })
   }
 
-  clipboardClick() {
+  handleClipboardClick() {
     copy(this.state.randomPass)
   }
 
@@ -93,7 +92,7 @@ class App extends React.Component {
   }
 
   //  Comment: Functions that will be called on selecting advanced options
-  sharePassClick() {
+  handleSharePasswordClick() {
     axios
       .post('https://file.io', `text=${this.state.randomPass}`)
       .then(response => {
@@ -109,7 +108,7 @@ class App extends React.Component {
       })
   }
 
-  passLengthChange(event) {
+  handlePasswordLengthChange(event) {
     // Commnet: Changes Password only if input input password value between 1 to 99
     if (0 < event.target.value && event.target.value < 100) {
       this.setState({
@@ -121,9 +120,9 @@ class App extends React.Component {
   }
 
   checkBoxChange(event) {
-    let idFromEvent = event.target.id
+    const idFromEvent = event.target.id
     // Comment: Atleast one checkbox should be checked
-    if (checkBoxArray.length !== 1 || !this.state[idFromEvent] === true) {
+    if (checkBoxArray.length !== 1 || this.state[idFromEvent] === false) {
       this.setState(prevState => ({ [idFromEvent]: !prevState[idFromEvent] }))
 
       // Comment: Checks if checkbox is checked or not
@@ -133,10 +132,11 @@ class App extends React.Component {
           checkBoxArray.push(event.target.pattern)
       } else {
         // Comment: On uncheck remove pattern from array
-        let index = checkBoxArray.indexOf(event.target.pattern)
+        const index = checkBoxArray.indexOf(event.target.pattern)
         if (index > -1) checkBoxArray.splice(index, 1)
       }
-      let patternFromCheckBox = checkBoxArray.join('')
+
+      const patternFromCheckBox = checkBoxArray.join('')
 
       this.setState({
         passPattern: patternFromCheckBox,
@@ -144,6 +144,7 @@ class App extends React.Component {
       })
     }
   }
+
   render() {
     return (
       <div className="container">
@@ -155,7 +156,7 @@ class App extends React.Component {
               size="2x"
               color="gray"
               id="clipboard-icon"
-              onClick={this.clipboardClick}
+              onClick={this.handleClipboardClick}
             />
           </div>
         </div>
@@ -195,7 +196,7 @@ class App extends React.Component {
                     <button
                       className="btn btn-outline-primary"
                       id="sharebutton"
-                      onClick={this.sharePassClick}
+                      onClick={this.handleSharePasswordClick}
                     >
                       Share Password
                     </button>
@@ -208,7 +209,7 @@ class App extends React.Component {
                       placeholder="Password Length"
                       maxLength="2"
                       value={this.state.valueInPassInput}
-                      onChange={this.passLengthChange}
+                      onChange={this.handlePasswordLengthChange}
                     />
                   </div>
                 </div>

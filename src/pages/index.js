@@ -7,7 +7,7 @@ import App from 'components/App'
 
 class Index extends React.Component {
   render() {
-    const { location, data } = this.props
+    const { location } = this.props
     return (
       <div className="container">
         <Layout location={location}>

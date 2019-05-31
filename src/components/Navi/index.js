@@ -15,7 +15,7 @@ class Navi extends React.Component {
             </div>
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <a href="https://buymeacoffee.com/punit2502">Buy Me a Coffee</a>
+                <a href="https://paypal.me/punit2502">Buy Me a Coffee</a>
               </li>
             </ul>
           </div>

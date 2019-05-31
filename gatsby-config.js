@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'RandomPass',
-    description: 'f',
-    siteUrl: 'https://randompass.netlify.com',
+    description: 'Random Password Generator that works offline',
+    siteUrl: 'https://randompass.xyz',
     author: 'MakwanaPunit',
     twitter: 'MakwanaPunit',
     adsense: '',
