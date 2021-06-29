@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Punit Makwana",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "copy-to-clipboard": "^3.2.0",
     "gatsby": "2.7.1",
     "gatsby-image": "2.1.0",
